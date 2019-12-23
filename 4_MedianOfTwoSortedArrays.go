@@ -14,7 +14,7 @@ import "fmt"
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
 */
 func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
-	if len(nums1) > len(nums1) {
+	if len(nums1) > len(nums2) {
 		return findMedianSortedArrays(nums2, nums1) // 保证nums1的长度大于nums2
 	}
 	var n, m = len(nums1), len(nums2)
@@ -23,10 +23,9 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 	for l <= r {
 		i := (l + r) >> 1
 		j := (n+m+1)>>1 - i
-		fmt.Println(i, j, l, r, n, m)
-		if j > 0 && i < n && nums2[j-1] > nums1[i] {
+		if j != 0 && i != n && nums2[j-1] > nums1[i] {
 			l = i + 1
-		} else if i > 0 && j < m && nums1[i-1] > nums2[j] {
+		} else if i != 0 && j != m && nums1[i-1] > nums2[j] {
 			r = i - 1
 		} else {
 			if i == 0 {
@@ -64,5 +63,5 @@ func findMedianSortedArrays(nums1 []int, nums2 []int) float64 {
 }
 
 func main() {
-	fmt.Println(findMedianSortedArrays([]int{2}, []int{}))
+	fmt.Println(findMedianSortedArrays([]int{1,2}, []int{3,4}))
 }
