@@ -10,8 +10,7 @@ package main
 
 func getSum(a int, b int) int {
 	for b != 0 {
-		a = a ^ b        // 无进位加法
-		b = (a & b) << 1 // 获取进位
+		a, b = a^b, (a&b)<<1
 	}
 	return a
 }
