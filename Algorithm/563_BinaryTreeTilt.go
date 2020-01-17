@@ -27,7 +27,7 @@ package main
  */
 func findTilt(root *TreeNode) int {
 	var (
-		sumTilt int
+		sumTilt  int
 		traverse func(root *TreeNode) int
 	)
 	absInt := func(num int) int {
@@ -36,7 +36,7 @@ func findTilt(root *TreeNode) int {
 		}
 		return num
 	}
-	traverse = func(root *TreeNode) int{
+	traverse = func(root *TreeNode) int {
 		if root == nil {
 			return 0
 		}
@@ -47,9 +47,4 @@ func findTilt(root *TreeNode) int {
 	}
 	traverse(root)
 	return sumTilt
-}
-
-
-
-
 }
