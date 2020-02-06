@@ -22,40 +22,45 @@ package main
 */
 
 func searchRange(nums []int, target int) []int {
+	return []int{leftBound(nums, target), rightBound(nums, target)}
+}
+
+func leftBound(nums []int, target int) int {
 	var (
-		left       = 0
-		right      = len(nums)
-		targetLeft = -1
-		targetRght = -1
-		mid        = left + (right-left)>>1
+		left  = 0
+		right = len(nums) - 1
+		mid   = left + (right-left)>>1
 	)
-	for left < right {
+	for left <= right {
 		if nums[mid] >= target {
-			right = mid
-		} else if nums[mid] < target {
+			right = mid - 1
+		} else {
 			left = mid + 1
 		}
 		mid = left + (right-left)>>1
 	}
 	if left == len(nums) || nums[left] != target {
-		targetLeft = -1
-	} else {
-		targetLeft = left
+		return -1
 	}
-	left = 0
-	right = len(nums)
-	for left < right {
-		mid = left + (right-left)>>1
+	return left
+}
+
+func rightBound(nums []int, target int) int {
+	var (
+		left  = 0
+		right = len(nums) - 1
+		mid   = left + (right-left)>>1
+	)
+	for left <= right {
 		if nums[mid] <= target {
 			left = mid + 1
-		} else if nums[mid] > target {
-			right = mid
+		} else {
+			right = mid - 1
 		}
+		mid = left + (right-left)>>1
 	}
-	if left == 0 || nums[left-1] != target {
-		targetRght = -1
-	} else {
-		targetRght = left - 1
+	if right == -1 || nums[right] != target {
+		return -1
 	}
-	return []int{targetLeft, targetRght}
+	return right
 }
