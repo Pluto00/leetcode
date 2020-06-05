@@ -24,7 +24,7 @@ public:
     {
         priority_queue<int, vector<int>, greater<int>> pq;
         for (auto num : nums)
-        {
+        { 
             if (pq.size() >= k && pq.top() >= num)
                 continue;
             pq.push(num);
